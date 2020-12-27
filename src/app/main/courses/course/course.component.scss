@@ -1,0 +1,21 @@
+.card{
+    object-fit: contain;
+    width: 300px;
+    height: 300px;
+    object-position: center;
+}
+
+
+.card-img-top{
+    height: 200px;
+    object-position: center;
+    object-fit: cover;
+}
+
+h4{
+    font-weight: bold;
+}
+
+#btn {
+  margin: 15px;
+}

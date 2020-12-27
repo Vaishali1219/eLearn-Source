@@ -1,0 +1,141 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="full" fxHide.lt-md>
+  <mat-card>
+    <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="center center">
+
+      <div fxLayout="column" fxLayoutAlign="center center" class="flex-container-box">
+        <mat-form-field appearance="fill">
+          <mat-label>Mode</mat-label>
+          <mat-select placeholder="Mode" ngModel name="domain" required>
+            <mat-option value=0>
+              Instructor
+            </mat-option>
+            <mat-option value=1>
+              Student
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div fxLayoutAlign="center center" class="flex-container">
+          <div>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Name" name="name" ngModel #nameInput="ngModel" required />
+              <mat-error *ngIf="nameInput.invalid">Please Enter Your Name</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+              <input matInput type="email" placeholder="E-Mail" name="email" ngModel #emailInput="ngModel" required email />
+              <mat-error *ngIf="emailInput.invalid">Please Enter a Valid Email</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxLayoutAlign="center center" class="flex-container">
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" name="password" ngModel #passwordInput="ngModel" required />
+            <mat-error>Please Enter a Valid Password</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="Address" name="address" ngModel #addressInput="ngModel" required />
+            <mat-error *ngIf="addressInput.invalid">Please Enter a Valid Address</mat-error>
+          </mat-form-field>
+        </div>
+        </div>
+
+        <div fxLayoutAlign="center center" class="flex-container">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Phone" name="phone" ngModel #phoneInput="ngModel" required />
+            <mat-error *ngIf="phoneInput.invalid">Please Enter a Valid Phone Number</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="City" name="city" ngModel #cityInput="ngModel" required />
+            <mat-error *ngIf="cityInput.invalid">Please Enter a Valid City Name</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="center center" class="flex-container">
+          <mat-form-field>
+            <input matInput type="text" placeholder="State" name="state" ngModel #stateInput="ngModel" required />
+            <mat-error *ngIf="stateInput.invalid">Please Enter a Valid State Name</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="Country" name="country" ngModel #countryInput="ngModel" required />
+            <mat-error *ngIf="countryInput.invalid">Please Enter a Valid Country Name</mat-error>
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Sign Up</button>
+        <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+</form>
+  </mat-card>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="center center" class="half"  fxHide.gt-sm>
+  <mat-card>
+    <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="center center">
+
+      <div fxLayout="column" fxLayoutAlign="center center" class="flex-container-box">
+        <mat-form-field appearance="fill">
+          <mat-label>Mode</mat-label>
+          <mat-select placeholder="Mode" ngModel name="domain" required>
+            <mat-option value=0>
+              Instructor
+            </mat-option>
+            <mat-option value=1>
+              Student
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name" name="name" ngModel #nameInput="ngModel" required />
+          <mat-error *ngIf="nameInput.invalid">Please Enter Your Name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="email" placeholder="E-Mail" name="email" ngModel #emailInput="ngModel" required email />
+          <mat-error *ngIf="emailInput.invalid">Please Enter a Valid Email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" name="password" ngModel #passwordInput="ngModel" required />
+          <mat-error>Please Enter a Valid Password</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Address" name="address" ngModel #addressInput="ngModel" required />
+          <mat-error *ngIf="addressInput.invalid">Please Enter a Valid Address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Phone" name="phone" ngModel #phoneInput="ngModel" required />
+          <mat-error *ngIf="phoneInput.invalid">Please Enter a Valid Phone Number</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="City" name="city" ngModel #cityInput="ngModel" required />
+          <mat-error *ngIf="cityInput.invalid">Please Enter a Valid City Name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="State" name="state" ngModel #stateInput="ngModel" required />
+          <mat-error *ngIf="stateInput.invalid">Please Enter a Valid State Name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Country" name="country" ngModel #countryInput="ngModel" required />
+          <mat-error *ngIf="countryInput.invalid">Please Enter a Valid Country Name</mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Sign Up</button>
+      <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+    </form>
+  </mat-card>
+</div>
+

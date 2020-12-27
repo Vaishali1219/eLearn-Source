@@ -1,0 +1,113 @@
+<div *ngIf="course === null"></div>
+
+<!--Section: Magazine v.2-->
+<section class="magazine-section my-5" *ngIf="course != null">
+
+  <!-- Section heading -->
+  <h2 class="h1-responsive font-weight-bold text-center my-5">Section title</h2>
+  <!-- Section description -->
+  <p class="text-center dark-grey-text w-responsive mx-auto mb-5">
+    Duis aute irure dolor in reprehenderit in
+    voluptate
+    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit id laborum.
+  </p>
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-6 col-md-12">
+
+      <!-- Featured news -->
+      <div class="single-news mb-lg-0 mb-4">
+
+        <!-- Image -->
+        <div class="view overlay rounded z-depth-1-half mb-4">
+          <img class="img-fluid" [src]="getImage(course.avatar)" [alt]="course.title" id="imgB">
+          <a>
+            <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+          </a>
+        </div>
+
+        <!-- Data -->
+        <div class="news-data d-flex justify-content-between">
+          <a href="#!" class="deep-orange-text">
+            <h4 class="font-weight-bold">
+              <mdb-icon fas icon="grin" class="pr-2"></mdb-icon>{{course.owner}}
+            </h4>
+          </a>
+          <p class="font-weight-bold dark-grey-text">
+            <mdb-icon far icon="clock" class="pr-2"></mdb-icon>{{course.updatedAt | date}}
+          </p>
+        </div>
+
+        <!-- Excerpt -->
+        <h3 class="font-weight-bold dark-grey-text mb-3">
+          <a>{{course.title}}</a>
+        </h3>
+        <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4" id="ins">
+          {{course.instructions}}
+        </p>
+
+        <a mat-raised-button color="warn" class="btn" (click)="onSubscribe(course._id)" *ngIf="isAuth && user.domain === 1">Subscribe</a>
+
+      </div>
+      <!-- Featured news -->
+      <!--<a mat-raised-button color="primary" class="btn" [routerLink]="['/edit', course._id]">Edit</a>-->
+    </div>
+    <!-- Grid column -->
+    <!-- Grid column -->
+    <div class="col-lg-6 col-md-12">
+      <!-- Small news -->
+      <div class="single-news" *ngFor="let cor of courses">
+
+        <!-- Grid row -->
+        <div class="row">
+
+          <!-- Grid column -->
+          <div class="col-md-3">
+
+            <!--Image-->
+            <div class="view overlay rounded z-depth-1 mb-md-0 mb-4" id="imgA">
+              <img class="img-fluid" [src]="getImage(cor.avatar)" [alt]="cor.title">
+              <a [routerLink]="['/main/products', cor._id]">
+                <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+              </a>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-9">
+
+            <!-- Excerpt -->
+            <p class="font-weight-bold dark-grey-text">{{cor.title}}</p>
+            <div class="d-flex justify-content-between">
+              <div class="col-11 text-truncate pl-0 mb-lg-3">
+                <a href="#!" class="dark-grey-text">{{cor.instructions}}</a>
+              </div>
+              <a [routerLink]="['/main/products', cor._id]">
+                <mdb-icon fas icon="angle-double-right"></mdb-icon>
+              </a>
+            </div>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+        <hr />
+      </div>
+      <!-- Small news -->
+
+      <mat-paginator [length]="totalCourses" [pageSize]="coursesPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)" *ngIf="courses.length > 0"></mat-paginator>
+
+    </div>
+    <!--Grid column-->
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!--Section: Magazine v.2-->

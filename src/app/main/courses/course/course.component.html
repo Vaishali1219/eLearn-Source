@@ -1,0 +1,27 @@
+<!-- Card -->
+<div class="card">
+
+  <!-- Card image -->
+  <div class="view overlay">
+    <img class="card-img-top" [src]="getImage(course.avatar)" alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h4 class="card-title">{{course.title}}</h4>
+    <!-- Text -->
+    <!-- Button -->
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <button mdbBtn type="button" color="amber" size="sm" class="waves-light" mdbWavesEffect id="btn" (click)="onSubscribe(course._id)" *ngIf="isAuth && user.domain === 1">Subscribe</button>
+      <button mdbBtn type="button" color="indigo" size="sm" class="waves-light" mdbWavesEffect id="btn" (click)="onViewCourse(course._id)">View</button>
+    </div>
+
+  </div>
+
+</div>
+<!-- Card -->

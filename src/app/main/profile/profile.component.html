@@ -1,0 +1,60 @@
+<div class="flex-container">
+  <div fxFlex="30" fxLayout="column">
+    <div>
+      <mdb-card>
+        <!--Card image-->
+        <mdb-card-img [src]="user.domain ===0 ? 'assets/images/13.png' : 'assets/images/14.png'" alt="Card image cap" *ngIf="profilePic === null"></mdb-card-img>
+        <mdb-card-img [src]="profilePic" alt="Card image cap" *ngIf="profilePic !== null"></mdb-card-img>
+        <!--Card content-->
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-elegant btn-sm" (click)="onUpload()">Upload</button>
+          <button type="button" class="btn btn-deep-orange btn-sm" (click)="onDelete()">Remove</button>
+        </div>
+        <mdb-card-body>
+
+          <!--Title-->
+          <mdb-card-title>
+            <h4>{{user.name}}</h4>
+          </mdb-card-title>
+
+          <!--Text-->
+          <mdb-card-text>
+            <h3 *ngIf="user.domain === 0">INSTRUCTOR</h3>
+            <h3 *ngIf="user.domain === 1">STUDENT</h3>
+          </mdb-card-text>
+
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+
+    <div>
+      <mdb-card id="addCard">
+        <mdb-card-body>
+          <mdb-card-title>
+            <h5 class="font-weight-bold mb-3">ABOUT</h5>
+          </mdb-card-title>
+          <mdb-card-text class="mb-0">
+            {{user.address}}
+          </mdb-card-text>
+        </mdb-card-body>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{user.phone}}</li>
+          <li class="list-group-item">{{user.city}}</li>
+          <li class="list-group-item">{{user.state}}</li>
+        </ul>
+        <mdb-card-body>
+          <a routerLink="/main/profile/settings" class="card-link" (click)="sendData()">Settings</a>
+          <a routerLink="/main/profile/account-stats" class="card-link" *ngIf="user.domain === 0">Account Stats</a>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+
+  <div fxFlex="70" fxLayout="column">
+
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

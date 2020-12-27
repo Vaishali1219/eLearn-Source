@@ -1,0 +1,59 @@
+<mat-card class="flex-container-box">
+  <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+
+  <div fxLayout="column">
+    <div class="flex-container" id="main">
+      <div>
+          <img [src]="getImage(user.avatar)" alt="Card image cap" *ngIf="user.avatar"/>
+          <img src="assets/images/13.png" alt="Card image cap" *ngIf="!user.avatar" />
+      </div>
+
+      <div fxFlex="70" fxLayoutAlign="center center">
+        <form fxLayout="column" fxLayoutAlign="center center" (submit)="onUpdateProfile()" [formGroup]="form" *ngIf="!isLoading">
+
+          <div fxLayout="column" class="flex-container">
+
+            <mat-form-field>
+              <input matInput type="text" placeholder="Name" #nameInput formControlName="name" />
+              <mat-error *ngIf="form.get('name').invalid">Please Enter Your Name</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="text" placeholder="Address" #addressInput formControlName="address" />
+              <mat-error *ngIf="form.get('address').invalid">Please Enter a Valid Address</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="text" placeholder="City" #cityInput formControlName="city" />
+              <mat-error *ngIf="form.get('city').invalid">Please Enter a Valid City Name</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="text" placeholder="State" #stateInput formControlName="state" />
+              <mat-error *ngIf="form.get('state').invalid">Please Enter a Valid State Name</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="text" placeholder="Country" #countryInput formControlName="country" />
+              <mat-error *ngIf="form.get('country').invalid">Please Enter a Valid Country Name</mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <button mat-raised-button color="accent" type="submit">Update Profile</button>
+          <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+        </form>
+      </div>
+    </div>
+
+    <div id="others">
+      <a (click)="onChangePassword()">ChangePassword</a>
+      <a (click)="onChangeProfilePic()">ChangeProfilePic</a>
+      <a (click)="onLogoutall()">LogoutAll</a>
+    </div>
+  </div>
+      
+  
+</mat-card>
+
+

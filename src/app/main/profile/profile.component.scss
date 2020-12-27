@@ -1,0 +1,22 @@
+div{
+    margin: 5px;
+}
+
+#addCard {
+  width: 19.5rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  #addCard{
+      width: 16.25rem;
+  }
+}

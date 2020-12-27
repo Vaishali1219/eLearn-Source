@@ -1,0 +1,77 @@
+<!-- Section: Blog v.3 -->
+  <section class="my-5">
+
+    <!-- Section heading -->
+    <h2 class="h1-responsive font-weight-bold text-center my-5">Recent posts</h2>
+    <!-- Section description -->
+    <p class="text-center dark-grey-text w-responsive mx-auto mb-5">
+      Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+
+    <!--<div *ngFor="let course of courses | paginate: { itemsPerPage: coursesPerPage, currentPage: currentPage, totalItems: totalCourses}">-->
+    <!-- Grid row -->
+    <div *ngFor="let course of courses">
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-lg-5 col-xl-4">
+
+          <!-- Featured image -->
+          <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4 waves-light" mdbWavesEffect>
+            <img class="img-fluid" [src]="getImage(course.avatar)" [alt]="course.title" id="img">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+
+        </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-lg-7 col-xl-8">
+
+          <!-- Post title -->
+          <h3 class="font-weight-bold mb-3"><strong>{{course.title}}</strong></h3>
+          <!-- Excerpt -->
+          <p class="dark-grey-text" id="ins">
+            {{course.instructions}}
+          </p>
+          <!-- Post data -->
+          <p *ngIf="user.domain === 0">by <a class="font-weight-bold">{{course.owner}}</a>, {{course.updatedAt | date}}</p>
+          <p *ngIf="user.domain === 1">{{course.updatedAt | date}}</p>
+          <!-- Read more button -->
+          <a mdbBtn color="primary" mdbWavesEffect [routerLink]="['/courses/view', course._id]">Read more</a>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+      <hr class="my-5">
+    </div>
+
+    <div fxLayout="row">
+      <div fxFlex="30">
+          <mat-form-field appearance="outline">
+            <mat-label>sortBy</mat-label>
+            <mat-select placeholder="Mode" [(value)]="selected" (selectionChange)="onChange()">
+              <mat-option>None</mat-option>
+              <mat-option value="title">Title</mat-option>
+              <mat-option value="updatedAt">updatedAt</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+
+      <div fxFlex="70">
+        <mat-paginator [length]="totalCourses" [pageSize]="coursesPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)" *ngIf="courses.length > 0"></mat-paginator>
+      </div>
+    </div>
+
+    
+
+    <!---->
+
+  </section>
+<!-- Section: Blog v.3 -->

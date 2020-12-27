@@ -1,0 +1,21 @@
+<mdb-card *ngFor="let course of courses">
+  <mdb-card-header>{{course.title}}</mdb-card-header>
+  <mdb-card-body>
+    <mdb-card-title>
+      <h5>{{course.createdAt | date}}</h5>
+    </mdb-card-title>
+    <mdb-card-text>{{course.instructions}}</mdb-card-text>
+    <a mdbBtn color="primary" (click)="onView(course._id)">View</a>
+  </mdb-card-body>
+</mdb-card>
+
+<mdb-card *ngIf="courses.length <= 0">
+  <mdb-card-header>No Courses Yet</mdb-card-header>
+  <mdb-card-body>
+    <mdb-card-title>
+      <h5>Please add a New Course</h5>
+    </mdb-card-title>
+  </mdb-card-body>
+</mdb-card>
+
+<mat-paginator [length]="totalCourses" [pageSize]="coursesPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)" *ngIf="courses.length > 0"></mat-paginator>

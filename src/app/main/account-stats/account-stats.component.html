@@ -1,0 +1,39 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field>
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition
+  ['CreatedDate', 'UpdatedDate', 'CourseTitle', 'TotalSubscribers']" -->
+    <!-- Position Column -->
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.createdAt | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Updated Date</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.updatedAt | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Course Title</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buyers">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>TotalSubscribers</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.buyers}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+
+
+  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>
+

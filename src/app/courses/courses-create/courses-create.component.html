@@ -1,0 +1,108 @@
+<div class="flex-container">
+  <div fxFlex="45">
+    <mat-card>
+      <mat-spinner mode="indeterminate" *ngIf="isLoading"></mat-spinner>
+      <form (submit)="onAddCourse()" [formGroup]="form" *ngIf="!isLoading" fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field *ngIf="mode === 'create'">
+          <input matInput formControlName="title" type="text" placeholder="Course Title" [(ngModel)]="title" />
+          <mat-error *ngIf="form.get('title').invalid">Please Enter the Course Title</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="mode === 'edit' && course.title !== null">
+          <input matInput formControlName="title" type="text" placeholder="Course Title" [(ngModel)]="course.title" />
+          <mat-error *ngIf="form.get('title').invalid">Please Enter the Course Title</mat-error>
+        </mat-form-field>
+
+        <div>
+          <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+          <input type="file" #filePicker (change)="onImagePicked($event)"/>
+        </div>
+
+        <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+          <img [src]="imagePreview" [alt]="form.value.title" />
+        </div>
+
+        <mat-form-field *ngIf="mode === 'create'">
+          <textarea rows="25" matInput placeholder="Course Instructions" formControlName="instructions" [(ngModel)]="instructions"></textarea>
+          <mat-error *ngIf="form.get('instructions').invalid">Please Enter Post Content</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="mode === 'edit' && course.instructions !== null">
+          <textarea rows="25" matInput placeholder="Course Instructions" formControlName="instructions" [(ngModel)]="course.instructions"></textarea>
+          <mat-error *ngIf="form.get('instructions').invalid">Please Enter Post Content</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" type="submit" *ngIf="mode === 'create'">Create Course</button>
+        <button mat-raised-button color="accent" type="submit" *ngIf="mode === 'edit'">Update Course</button>
+      </form>
+    </mat-card>
+
+  </div>
+
+  <div fxFlex="5"></div>
+
+  <div fxFlex="45">
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col-lg-12 col-md-12">
+
+        <!-- Featured news -->
+        <div class="single-news mb-lg-0 mb-4">
+
+          <!-- Image -->
+          <div class="view overlay rounded z-depth-1-half mb-4">
+            <img [src]="imagePreview" alt="No Preview" *ngIf="mode==='create'" id="imgP">
+            <img [src]="imagePreview" [alt]="course.title" *ngIf="mode==='edit' && !isLoading" id="imgP">
+            <a>
+              <div class="mask rgba-white-slight waves-light" mdbWavesEffect></div>
+            </a>
+          </div>
+
+          <!-- Data -->
+          <div class="news-data d-flex justify-content-between">
+            <a href="#!" class="deep-orange-text" *ngIf="mode === 'edit' && !isLoading">
+              <h6 class="font-weight-bold">
+                <mdb-icon fas icon="utensils" class="pr-2"></mdb-icon>{{course.owner}}
+              </h6>
+            </a>
+            <a href="#!" class="deep-orange-text" *ngIf="mode === 'create'">
+              <h6 class="font-weight-bold">
+                <mdb-icon fas icon="utensils" class="pr-2"></mdb-icon>{{owner}}
+              </h6>
+            </a>
+            <p class="font-weight-bold dark-grey-text" *ngIf="mode === 'edit' && !isLoading">
+              <mdb-icon far icon="clock" class="pr-2"></mdb-icon>{{course.updatedAt | date}}
+            </p>
+            <p class="font-weight-bold dark-grey-text" *ngIf="mode === 'create'">
+              <mdb-icon far icon="clock" class="pr-2"></mdb-icon>{{updateDate | date}}
+            </p>
+          </div>
+
+          <!-- Excerpt -->
+          <h3 class="font-weight-bold dark-grey-text mb-3" *ngIf="mode === 'create'">
+            <a>{{title}}</a>
+          </h3>
+
+          <h3 class="font-weight-bold dark-grey-text mb-3" *ngIf="mode === 'edit' && !isLoading">
+            <a>{{course.title}}</a>
+          </h3>
+
+          <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4" *ngIf="mode === 'create'">
+            {{instructions}}
+          </p>
+
+          <p class="dark-grey-text mb-lg-0 mb-md-5 mb-4" *ngIf="mode === 'edit' && !isLoading">
+            {{course.instructions}}
+          </p>
+
+        </div>
+        <!-- Featured news -->
+
+      </div>
+      <!-- Grid column -->
+    </div>
+  </div>
+
+</div>
+
+

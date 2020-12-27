@@ -1,0 +1,24 @@
+<mat-card class="flex-container-box">
+  <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+
+  <div>
+    <form fxLayout="column" fxLayoutAlign="center center" (submit)="onUpdateProfile()" [formGroup]="form" *ngIf="!isLoading">
+      <div *ngIf="imagePreview === null">
+        <img src="assets/images/13.png" alt="Card image cap" />
+      </div>
+
+      <div *ngIf="imagePreview !== '' && imagePreview">
+        <img [src]="imagePreview"/>
+      </div>
+
+      <div>
+        <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+        <input type="file" #filePicker (change)="onImagePicked($event)" />
+        <button mat-raised-button color="accent" type="submit">Update Profile Pic</button>
+        <mat-spinner mode="indeterminate" *ngIf="isLoading" fxLayoutAlign="center center"></mat-spinner>
+      </div>
+    </form>
+  </div>
+
+</mat-card>
+

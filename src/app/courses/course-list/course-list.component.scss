@@ -1,0 +1,20 @@
+#ins {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+}
+
+#img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/

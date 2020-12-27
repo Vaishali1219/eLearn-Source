@@ -1,0 +1,40 @@
+.single-news {
+  margin: 5px;
+}
+
+.btn {
+  margin: 5px;
+  padding: 5px;
+  width: 75px;
+}
+
+#ins {
+  text-align: justify;
+}
+
+#imgB {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.img-fluid {
+  height: 100px;
+  width: 300px;
+  object-fit: cover;
+}
+
+@media (max-width: 800px) {
+  .btn {
+    margin: 1px;
+    padding: 1px;
+    width: 20px;
+    font-size: 15px;
+  }
+
+  .img-fluid {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+}

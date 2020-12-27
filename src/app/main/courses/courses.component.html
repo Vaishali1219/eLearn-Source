@@ -1,0 +1,37 @@
+<div>
+  <div fxLayout="row">
+    <div fxFlex="30">
+      <mat-form-field appearance="outline">
+        <mat-label>sortBy</mat-label>
+        <mat-select placeholder="Mode" [(value)]="selected" (selectionChange)="onChange()">
+          <mat-option>None</mat-option>
+          <mat-option value="title">Title</mat-option>
+          <mat-option value="updatedAt">updatedAt</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="70">
+      <mat-paginator [length]="totalCourses" [pageSize]="coursesPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)" *ngIf="courses.length > 0"></mat-paginator>
+    </div>
+  </div>
+</div>
+
+<div fxShow fxHide.lt-lg="true">
+  <mat-grid-list cols="4" rowHeight="1:1.15" [gutterSize]="'10px'">
+    <mat-grid-tile *ngFor="let course of courses"><app-course [course]="course"></app-course></mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div fxShow fxHide.lt-md="true" fxHide.gt-md="true">
+  <mat-grid-list cols="2" rowHeight="1:1.15" [gutterSize]="'10px'">
+    <mat-grid-tile *ngFor="let course of courses"><app-course [course]="course"></app-course></mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div fxShow fxHide.gt-sm="true">
+  <mat-grid-list cols="1" rowHeight="1:1.15" [gutterSize]="'10px'">
+    <mat-grid-tile *ngFor="let course of courses"><app-course [course]="course"></app-course></mat-grid-tile>
+  </mat-grid-list>
+</div>
+
