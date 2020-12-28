@@ -24,7 +24,7 @@ export class SidenavListComponent implements OnInit{
       this.domain = this.user.domain;
     }
     this.authStatusSubs = this.authService.getAuthStatusListner().subscribe(authStatus => {
-      this.isAuth = authStatus;
+      this.isAuth = authStatus.isAuth;
     });
   }
 
@@ -37,7 +37,7 @@ export class SidenavListComponent implements OnInit{
   }
 
   onLogout() {
-    this.authService.logout();
+    this.authService.onLogoutall();
   }
 
 }

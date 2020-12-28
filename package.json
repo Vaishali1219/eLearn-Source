@@ -2,6 +2,7 @@
   "name": "mdb-angular-free",
   "version": "10.0.0",
   "scripts": {
+    "deploy": "npm run build && firebase deploy",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

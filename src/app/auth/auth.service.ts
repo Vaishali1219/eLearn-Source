@@ -17,10 +17,13 @@ export class AuthService {
   public token: string;
   public tokenExpiryDate: any;
   private message: string;
-  private authStatusListener = new Subject<boolean>();
+
+  private authStatusListener = new Subject<{ isAuth: boolean, user: AuthData }>();
   private userInfoUpdated = new Subject<AuthData>();
   private profilePicUpdated = new Subject<any>();
   private userSelected = new Subject<AuthData>();
+  private userDataInfo = new Subject<{ user: AuthData }>();
+
   private tokenTimer: any;
   private userId: string;
   private user: any;
@@ -58,6 +61,11 @@ export class AuthService {
   getUserInfo() {
     return this.user;
   }
+
+  getUserDataInfo() {
+    return this.userDataInfo.asObservable();
+  }
+
 
   onForgotPassword(domain: number, email: string) {
     const userEmail = {
@@ -113,7 +121,7 @@ export class AuthService {
         const expiresInDuration = response.expiresIn;
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;
-        this.authStatusListener.next(true);
+        this.authStatusListener.next({ isAuth: true, user: response.user });
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         this.saveAuthData(token, expirationDate, this.user);
@@ -150,7 +158,8 @@ export class AuthService {
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;
         this.userdomain = response.user.domain;
-        this.authStatusListener.next(true);
+        this.authStatusListener.next({ isAuth: true, user: response.user });
+        this.userDataInfo.next(response.user);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         this.tokenExpiryDate = expirationDate;
@@ -207,7 +216,8 @@ export class AuthService {
 
   getProfileInfo() {
     this.http.get<{ user: any }>(BACKEND_URL + "profile/me").subscribe(response => {
-      this.authStatusListener.next(true);
+      this.authStatusListener.next({ isAuth: true, user: response.user });
+      this.userDataInfo.next({ user: response.user });
       this.user = response.user;
     }, error => {
       console.log(error);
@@ -287,7 +297,7 @@ export class AuthService {
     this.http.post(BACKEND_URL + "users/logout", this.token).subscribe(response => {
       this.token = null;
       this.isAuthenticated = false;
-      this.authStatusListener.next(false);
+      this.authStatusListener.next({ isAuth: false, user: null });
       clearTimeout(this.tokenTimer);
       this.clearAuthData();
       this.router.navigate(['/home']);
@@ -301,7 +311,7 @@ export class AuthService {
     this.http.post(BACKEND_URL + "users/logoutall", this.token).subscribe(response => {
       this.token = null;
       this.isAuthenticated = false;
-      this.authStatusListener.next(false);
+      this.authStatusListener.next({ isAuth: false, user: null });
       clearTimeout(this.tokenTimer);
       this.clearAuthData();
       this.router.navigate(['/home']);
@@ -358,7 +368,7 @@ export class AuthService {
       this.user = JSON.parse(authInformation.user);
       this.isAuthenticated = true;
       this.setAuthTimer(expiresIn / 1000);
-      this.authStatusListener.next(true);
+      this.authStatusListener.next({ isAuth: true, user: this.user });
     }
   }
 

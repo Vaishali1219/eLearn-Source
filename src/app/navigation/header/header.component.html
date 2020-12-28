@@ -11,7 +11,7 @@
           <li *ngIf="isAuth"><span><button mat-icon-button class="example-icon" routerLink="/main/profile"><mat-icon>home</mat-icon></button></span></li>
           <li *ngIf="isAuth"><span><button mat-icon-button class="example-icon" (click)="onLogout()"><mat-icon>lock_open</mat-icon></button></span></li>
           <li><span><button mat-icon-button class="example-icon"><mat-icon>facebook</mat-icon></button></span></li>
-          <li><span><button mat-icon-button class="example-icon" routerLink="/main/products"><mat-icon>book</mat-icon></button></span></li>
+          <li *ngIf="isAuth"><span><button mat-icon-button class="example-icon" routerLink="/main/products"><mat-icon>book</mat-icon></button></span></li>
         </ul>
       </div>
 
@@ -21,7 +21,8 @@
     </mat-toolbar-row>
 
     <mat-toolbar-row>
-      <span><a mat-button routerLink="/main/products">Courses</a></span>
+      <span *ngIf="isAuth"><a mat-button routerLink="/main/products">Courses</a></span>
+      <span *ngIf="isAuth && domain===0"><button mat-icon-button class="example-icon" routerLink="/courses/course-create"><mat-icon>add_task</mat-icon></button></span>
       <span class="example-spacer"></span>
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>share</mat-icon>

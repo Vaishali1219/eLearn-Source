@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: "http://localhost:3001/"
+  apiURL: "https://rapid-elearn-app.herokuapp.com/"
 };
 
 /*

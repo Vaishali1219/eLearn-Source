@@ -25,7 +25,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authStatusSub = this.authService.getAuthStatusListner().subscribe(authStatus => {
-      this.isAuth = authStatus;
+      this.isAuth = authStatus.isAuth;
     });
     this.form = new FormGroup({
       'name': new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),

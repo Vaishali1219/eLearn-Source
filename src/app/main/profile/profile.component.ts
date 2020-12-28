@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
     //window.location.reload();
     this.isAuth = this.authService.getIsAuth();
     this.isAuthSubs = this.authService.getAuthStatusListner().subscribe(authStatus => {
-      this.isAuth = authStatus;
+      this.isAuth = authStatus.isAuth;
     });
 
     if (this.isAuth) {
@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges() {
     this.isAuth = this.authService.getIsAuth();
     this.isAuthSubs = this.authService.getAuthStatusListner().subscribe(authStatus => {
-      this.isAuth = authStatus;
+      this.isAuth = authStatus.isAuth;
     });
 
     if (this.isAuth) {
